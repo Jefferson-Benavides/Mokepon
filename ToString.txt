@@ -1,0 +1,1 @@
+    <table border='1'><tr><th rowspan='2'>Round</th><th colspan='2'>ATAQUES</th><th rowspan='2'>Veredicto</th></tr><tr><th><span id='rotuloJugador'></span></th><th>Rival</th></tr>

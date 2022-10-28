@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mokepón</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="text/javascript" src="./script.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script> -->
+</head>
+
+<body>
+    <h1 class="titulo">MOKEPÓN 🔥💧🌱</h1>
+    <section id="principal">
+        <h2 class="subtitulo">Elige tu mascota</h2>
+        <div id="unoSeleccionMascota">
+            <label for="capipepo" class="lblMascotas" onclick="activarBotonConfirmarMascota()">
+                <p>Capipepo</p>
+                <img src="./assets/capipepo.png" alt="Capipepo">
+            </label>
+            <input type="radio" name="mascotaJugador" id="capipepo" class="mascotas"
+                onclick="activarBotonConfirmarMascota()">
+            <label for="hipodoge" class="lblMascotas" onclick="activarBotonConfirmarMascota()">
+                <p>
+                    Hipodoge
+                </p>
+                <img src="./assets/hipodoge.png" alt="Hipodoge">
+            </label>
+            <input type="radio" name="mascotaJugador" id="hipodoge" class="mascotas"
+                onclick="activarBotonConfirmarMascota()">
+            <label for="ratigueya" class="lblMascotas" onclick="activarBotonConfirmarMascota()">
+                <p>
+                    Ratigueya
+                </p>
+                <img src="./assets/ratigueya.png" alt="Ratigueya">
+            </label>
+            <input type="radio" name="mascotaJugador" id="ratigueya" class="mascotas"
+                onclick="activarBotonConfirmarMascota()">
+        </div>
+        <button id="confirmarSeleccionMascotaJugador" onclick="seleccionarMascotaJugador()">Aceptar</button>
+
+    </section>
+
+
+    <!-- div tres -->
+    <section id="tresSeleccionAtaqueJugador">
+        <section id="ataques">
+            <h2 class="subtitulo">Elige un ataque para empezar el juego</h2>
+            <div id="elegirAtaque-jugador">
+                <button class="ataques-jugador" id="aguaJugador" onclick="roundConAgua()">Agua 💧</button>
+                <button class="ataques-jugador" id="fuegoJugador" onclick="roundConFuego()">Fuego 🔥</button>
+                <button class="ataques-jugador" id="tierraJugador" onclick="roundConTierra()">Tierra 🌱</button>
+            </div>
+
+        </section>
+        
+        <div>
+            <div id="veredictoReinicio">
+                <section id="cincoVeredicto">
+                    <p id="veredictoJugador">Mucha suerte!!!</p>
+                </section>
+                <section id="seisBtnReiniciar">
+                    <button id="reiniciarJuego" onclick="reiniciarJuego()">Jugar otra vez</button>
+                </section>
+            </div>
+            <div id="dosNotificacionesMascotaElegidaYVidasDisponibles">
+                <section id="notificacionMascotaElegidaYVidasDisponibles-jugador">
+                    <p id="vidasMascotaJugador"></p>
+                    <p id="mascotaJugadorSeleccionada"></p>
+                    <p id="ataqueLanzadoXJugador"></p>
+                </section>
+    
+                <section id="notificacionMascotaElegidaYVidasRivalDisponibles-rival">
+                    <p id="vidasMascotaRival"></p>
+                    <p id="mascotaRivalSeleccionada"></p>
+                    <p id="ataqueLanzadoXRival"></p>
+                </section>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="cuatroLineaDeTiempoDelJuego">
+
+    </section>
+    <div id="resumenDelJuego"></div>
+</body>
+
+
+</html>
