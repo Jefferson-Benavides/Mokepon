@@ -105,6 +105,10 @@ button {
     grid-template-columns: 120px 120px;
 }
 
+.negrita{
+    font-weight: bold;
+}
+
 @media (max-width: 430px) {
 
     #unoSeleccionMascota,
@@ -113,3 +117,4 @@ button {
         flex-direction: column;
     }
 }
+

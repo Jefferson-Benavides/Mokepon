@@ -19,9 +19,7 @@ let mokepones = [];
 const btnConfirmarMascotaJugador = document.getElementById("confirmarSeleccionMascotaJugador");
 const principal = document.getElementById("principal");
 const divUnoSeleccionMascota = document.getElementById("unoSeleccionMascota");
-const opcionCapipepo = document.getElementById("capipepo");
-const opcionHipodoge = document.getElementById("hipodoge");
-const opcionRatigueya = document.getElementById("ratigueya");
+
 const divDos = document.getElementById("dosNotificacionesMascotaElegidaYVidasDisponibles");
 
 const divTres = document.getElementById("tresSeleccionAtaqueJugador");
@@ -41,6 +39,10 @@ const veredictoJugador = document.getElementById("veredictoJugador");
 const botonReiniciarJuego = document.getElementById("reiniciarJuego");
 const divSeis = document.getElementById("seisBtnReiniciar");
 
+let opcionCapipepo;
+let opcionHipodoge;
+let opcionRatigueya;
+
 class Mokepon {
     constructor(nombre, foto, vida) {
         this.nombre = nombre;
@@ -55,29 +57,29 @@ let hipodoge = new Mokepon('Hipodoge', './assets/hipodoge.png', 5)
 let ratigueya = new Mokepon('Ratigueya', './assets/ratigueya.png', 5)
 
 capipepo.ataques.push(
-    { nombre: '💧', id: 'aguaJugador'},
-    { nombre: '💧', id: 'aguaJugador'},
-    { nombre: '💧', id: 'aguaJugador'},
-    { nombre: '🔥', id: 'fuegoJugador'},
-    { nombre: '🌱', id: 'tierraJugador'},
+    { nombre: '💧', id: 'aguaJugador' },
+    { nombre: '💧', id: 'aguaJugador' },
+    { nombre: '💧', id: 'aguaJugador' },
+    { nombre: '🔥', id: 'fuegoJugador' },
+    { nombre: '🌱', id: 'tierraJugador' },
 
 );
 
 hipodoge.ataques.push(
-    { nombre: '🌱', id: 'tierraJugador'},
-    { nombre: '🌱', id: 'tierraJugador'},
-    { nombre: '🌱', id: 'tierraJugador'},
-    { nombre: '🔥', id: 'fuegoJugador'},
-    { nombre: '💧', id: 'aguaJugador'},
+    { nombre: '🌱', id: 'tierraJugador' },
+    { nombre: '🌱', id: 'tierraJugador' },
+    { nombre: '🌱', id: 'tierraJugador' },
+    { nombre: '🔥', id: 'fuegoJugador' },
+    { nombre: '💧', id: 'aguaJugador' },
 
 );
 
 ratigueya.ataques.push(
-    { nombre: '🔥', id: 'fuegoJugador'},
-    { nombre: '🔥', id: 'fuegoJugador'},
-    { nombre: '🔥', id: 'fuegoJugador'},
-    { nombre: '💧', id: 'aguaJugador'},
-    { nombre: '🌱', id: 'tierraJugador'},
+    { nombre: '🔥', id: 'fuegoJugador' },
+    { nombre: '🔥', id: 'fuegoJugador' },
+    { nombre: '🔥', id: 'fuegoJugador' },
+    { nombre: '💧', id: 'aguaJugador' },
+    { nombre: '🌱', id: 'tierraJugador' },
 
 );
 
@@ -85,7 +87,7 @@ mokepones.push(capipepo, hipodoge, ratigueya);
 function iniciarJuego() {
 
     mokepones.forEach((mokepon) => {
-        
+
         opcionDeMokepones = `
         <label for=${mokepon.nombre} class="lblMascotas" onclick="activarBotonConfirmarMascota()">
                 <p>${mokepon.nombre}</p>
@@ -93,8 +95,12 @@ function iniciarJuego() {
             </label>
             <input type="radio" name="mascotaJugador" id=${mokepon.nombre} class="mascotas"
                 onclick="activarBotonConfirmarMascota()">
-            <label for="hipodoge" class="lblMascotas" onclick="activarBotonConfirmarMascota()">
         `
+        divUnoSeleccionMascota.innerHTML += opcionDeMokepones;
+
+        opcionCapipepo = document.getElementById("Capipepo");
+        opcionHipodoge = document.getElementById("Hipodoge");
+        opcionRatigueya = document.getElementById("Ratigueya");
     })
 
     btnConfirmarMascotaJugador.disabled = true;
@@ -140,15 +146,15 @@ function reiniciarJuego() {
 function seleccionarMascotaJugador() {
 
     if (opcionCapipepo.checked) {
-        spanMascotaJugadorSeleccionada.innerHTML = `<strong>Capipepo</strong>`;
-        rotuloJugador = "Capipepo";
+        spanMascotaJugadorSeleccionada.innerHTML = opcionCapipepo.id;
+        rotuloJugador = opcionCapipepo.id;
     } else if (opcionHipodoge.checked) {
-        spanMascotaJugadorSeleccionada.innerHTML = `<strong>Hipodoge</strong>`;
-        rotuloJugador = "Hipodoge";
+        spanMascotaJugadorSeleccionada.innerHTML = opcionHipodoge.id;
+        rotuloJugador = opcionHipodoge.id;
 
     } else if (opcionRatigueya.checked) {
-        spanMascotaJugadorSeleccionada.innerHTML = `<strong>Ratigueya</strong>`;
-        rotuloJugador = "Ratigueya";
+        spanMascotaJugadorSeleccionada.innerHTML = opcionRatigueya.id;
+        rotuloJugador = opcionRatigueya.id;
     }
     mascotaEnemigo();
     imprimirMascotaElegidaVidasDisponibles();
