@@ -36,9 +36,9 @@ input {
     display: none;
 }
 
-input:checked{
+/* input:checked{
     
-}
+} */
 
 button {
     width: 180px;

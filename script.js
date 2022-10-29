@@ -9,12 +9,12 @@ let tierra = "🌱";
 let resumenJugador = [];
 let resumenRival = [];
 let veredicto = [];
-console.log(resumenJugador);
-console.log(resumenRival);
-console.log(veredicto);
+let opcionDeMokepones;
 
 let rotuloJugador = "";
 let rotuloRival = "";
+
+let mokepones = [];
 
 const btnConfirmarMascotaJugador = document.getElementById("confirmarSeleccionMascotaJugador");
 const principal = document.getElementById("principal");
@@ -41,7 +41,62 @@ const veredictoJugador = document.getElementById("veredictoJugador");
 const botonReiniciarJuego = document.getElementById("reiniciarJuego");
 const divSeis = document.getElementById("seisBtnReiniciar");
 
+class Mokepon {
+    constructor(nombre, foto, vida) {
+        this.nombre = nombre;
+        this.foto = foto;
+        this.vida = vida;
+        this.ataques = [];
+    }
+}
+
+let capipepo = new Mokepon('Capipepo', './assets/capipepo.png', 5)
+let hipodoge = new Mokepon('Hipodoge', './assets/hipodoge.png', 5)
+let ratigueya = new Mokepon('Ratigueya', './assets/ratigueya.png', 5)
+
+capipepo.ataques.push(
+    { nombre: '💧', id: 'aguaJugador'},
+    { nombre: '💧', id: 'aguaJugador'},
+    { nombre: '💧', id: 'aguaJugador'},
+    { nombre: '🔥', id: 'fuegoJugador'},
+    { nombre: '🌱', id: 'tierraJugador'},
+
+);
+
+hipodoge.ataques.push(
+    { nombre: '🌱', id: 'tierraJugador'},
+    { nombre: '🌱', id: 'tierraJugador'},
+    { nombre: '🌱', id: 'tierraJugador'},
+    { nombre: '🔥', id: 'fuegoJugador'},
+    { nombre: '💧', id: 'aguaJugador'},
+
+);
+
+ratigueya.ataques.push(
+    { nombre: '🔥', id: 'fuegoJugador'},
+    { nombre: '🔥', id: 'fuegoJugador'},
+    { nombre: '🔥', id: 'fuegoJugador'},
+    { nombre: '💧', id: 'aguaJugador'},
+    { nombre: '🌱', id: 'tierraJugador'},
+
+);
+
+mokepones.push(capipepo, hipodoge, ratigueya);
 function iniciarJuego() {
+
+    mokepones.forEach((mokepon) => {
+        
+        opcionDeMokepones = `
+        <label for=${mokepon.nombre} class="lblMascotas" onclick="activarBotonConfirmarMascota()">
+                <p>${mokepon.nombre}</p>
+                <img src=${mokepon.foto} alt=${mokepon.nombre}>
+            </label>
+            <input type="radio" name="mascotaJugador" id=${mokepon.nombre} class="mascotas"
+                onclick="activarBotonConfirmarMascota()">
+            <label for="hipodoge" class="lblMascotas" onclick="activarBotonConfirmarMascota()">
+        `
+    })
+
     btnConfirmarMascotaJugador.disabled = true;
     btnConfirmarMascotaJugador.addEventListener('click', seleccionarMascotaJugador);
     principal.style.display = 'flex';
