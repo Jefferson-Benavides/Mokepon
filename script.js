@@ -11,8 +11,8 @@ let resumenRival = [];
 let veredicto = [];
 let opcionDeMokepones;
 
-let rotuloJugador = "";
-let rotuloRival = "";
+let rotuloJugador;
+let rotuloRival;
 
 let mokepones = [];
 
@@ -156,6 +156,8 @@ function seleccionarMascotaJugador() {
         spanMascotaJugadorSeleccionada.innerHTML = opcionRatigueya.id;
         rotuloJugador = opcionRatigueya.id;
     }
+
+    extraerAtaques(rotuloJugador);
     mascotaEnemigo();
     imprimirMascotaElegidaVidasDisponibles();
     principal.style.display = 'none'
@@ -163,18 +165,25 @@ function seleccionarMascotaJugador() {
     divTres.style.display = 'flex';
 }
 
-function mascotaEnemigo() {
-    let mascotaAleatoriaEnemigo = aleatorio(1, 3);
-    if (mascotaAleatoriaEnemigo == 1) {
-        spanMascotaRivalSeleccionada.innerHTML = `<strong>Capipepo</strong>`;
-        rotuloRival = "Capipepo";
-    } else if (mascotaAleatoriaEnemigo == 2) {
-        spanMascotaRivalSeleccionada.innerHTML = `<strong>Hipodoge</strong>`;
-        rotuloRival = "Hipodoge";
-    } else if (mascotaAleatoriaEnemigo == 3) {
-        spanMascotaRivalSeleccionada.innerHTML = `<strong>Ratigueya</strong>`;
-        rotuloRival = "Ratigueya";
+function extraerAtaques(rotuloJugador){
+    let ataques;
+    for (let i = 0; i < mokepones.length; i++) {
+        if (rotuloJugador === mokepones[i].nombre) {
+            ataques = mokepones[i].ataques;
+        }
     }
+    mostrarAtaques(ataques);
+}
+
+mostrarAtaques(ataques){
+    
+}
+
+function mascotaEnemigo() {
+    let mascotaAleatoriaEnemigo = aleatorio(0, mokepones.length - 1);
+
+    spanMascotaRivalSeleccionada.innerHTML = mokepones[mascotaAleatoriaEnemigo].nombre;
+    rotuloRival = mokepones[mascotaAleatoriaEnemigo].nombre;
 }
 
 function ataquesAleatoriosEnemigo() {
