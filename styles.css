@@ -73,6 +73,7 @@ button {
     aparezcan uno al lado del otro y no 
     arriba y abajo */
     display: flex;
+    flex-direction: column;
     justify-content: center;
     gap: 10px;
 }
