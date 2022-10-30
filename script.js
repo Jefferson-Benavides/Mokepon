@@ -184,6 +184,7 @@ function extraerAtaques(rotuloJugador) {
         }
     }
     mostrarAtaques(ataques);
+    console.log(ataques);
 }
 
 function mostrarAtaques(ataques) {
