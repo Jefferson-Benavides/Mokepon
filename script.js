@@ -1,21 +1,3 @@
-let vidasJugador = 3;
-let vidasRival = 3;
-
-let agua = "💧";
-let fuego = "🔥";
-let tierra = "🌱";
-
-
-let resumenJugador = [];
-let resumenRival = [];
-let veredicto = [];
-let opcionDeMokepones;
-
-let rotuloJugador;
-let rotuloRival;
-
-let mokepones = [];
-
 const btnConfirmarMascotaJugador = document.getElementById("confirmarSeleccionMascotaJugador");
 const principal = document.getElementById("principal");
 const divUnoSeleccionMascota = document.getElementById("unoSeleccionMascota");
@@ -39,11 +21,32 @@ const veredictoJugador = document.getElementById("veredictoJugador");
 const botonReiniciarJuego = document.getElementById("reiniciarJuego");
 const divSeis = document.getElementById("seisBtnReiniciar");
 
+
+
 let opcionCapipepo;
 let opcionHipodoge;
 let opcionRatigueya;
 let ataquesMokepon;
 let arrayBotonesAtaques = [];
+
+let vidasJugador = 3;
+let vidasRival = 3;
+
+let agua = "💧";
+let fuego = "🔥";
+let tierra = "🌱";
+
+
+let resumenJugador = [];
+let resumenRival = [];
+let veredicto = [];
+let opcionDeMokepones;
+
+let rotuloJugador;
+let rotuloRival;
+
+let mokepones = [];
+
 
 class Mokepon {
     constructor(nombre, foto, vida) {
@@ -63,7 +66,7 @@ capipepo.ataques.push(
     { nombre: '💧', id: 'aguaJugador' },
     { nombre: '💧', id: 'aguaJugador' },
     { nombre: '🔥', id: 'fuegoJugador' },
-    { nombre: '🌱', id: 'tierraJugador' },
+    { nombre: '🌱', id: 'tierraJugador' }
 );
 
 hipodoge.ataques.push(
@@ -71,7 +74,7 @@ hipodoge.ataques.push(
     { nombre: '🌱', id: 'tierraJugador' },
     { nombre: '🌱', id: 'tierraJugador' },
     { nombre: '🔥', id: 'fuegoJugador' },
-    { nombre: '💧', id: 'aguaJugador' },
+    { nombre: '💧', id: 'aguaJugador' }
 );
 
 ratigueya.ataques.push(
@@ -79,22 +82,23 @@ ratigueya.ataques.push(
     { nombre: '🔥', id: 'fuegoJugador' },
     { nombre: '🔥', id: 'fuegoJugador' },
     { nombre: '💧', id: 'aguaJugador' },
-    { nombre: '🌱', id: 'tierraJugador' },
+    { nombre: '🌱', id: 'tierraJugador' }
 
 );
 
 mokepones.push(capipepo, hipodoge, ratigueya);
+
 function iniciarJuego() {
 
     mokepones.forEach((mokepon) => {
 
         opcionDeMokepones = `
+        <input type="radio" name="mascotaJugador" id=${mokepon.nombre} class="mascotas"
+            onclick="activarBotonConfirmarMascota()">
         <label for=${mokepon.nombre} class="lblMascotas" onclick="activarBotonConfirmarMascota()">
                 <p>${mokepon.nombre}</p>
                 <img src=${mokepon.foto} alt=${mokepon.nombre}>
             </label>
-            <input type="radio" name="mascotaJugador" id=${mokepon.nombre} class="mascotas"
-                onclick="activarBotonConfirmarMascota()">
         `
         divUnoSeleccionMascota.innerHTML += opcionDeMokepones;
 
@@ -104,6 +108,9 @@ function iniciarJuego() {
     })
 
     btnConfirmarMascotaJugador.disabled = true;
+    btnConfirmarMascotaJugador.style.background = '#001c59'
+    btnConfirmarMascotaJugador.style.border = '0px'
+
     btnConfirmarMascotaJugador.addEventListener('click', seleccionarMascotaJugador);
     principal.style.display = 'flex';
     veredictoJugador.innerHTML = "Mucha suerte!!!";
@@ -116,6 +123,11 @@ function iniciarJuego() {
 
 function activarBotonConfirmarMascota() {
     btnConfirmarMascotaJugador.disabled = false;
+    btnConfirmarMascotaJugador.style.background = 'transparent';
+    btnConfirmarMascotaJugador.style.border = '2px solid white';
+    btnConfirmarMascotaJugador.style.fontWeight = 'bold';
+
+
 }
 
 function banderazo() {
@@ -133,7 +145,6 @@ function banderazo() {
         return true;
     } else {
         sectAtaques.style.display = 'none';
-        divUnoSeleccionMascota.style.display = 'none';
         divSeis.style.display = 'flex';
         botonReiniciarJuego.style.display = 'flex'
 
@@ -153,12 +164,11 @@ function seleccionarMascotaJugador() {
     } else if (opcionHipodoge.checked) {
         spanMascotaJugadorSeleccionada.innerHTML = opcionHipodoge.id;
         rotuloJugador = opcionHipodoge.id;
-        
+
     } else if (opcionRatigueya.checked) {
         spanMascotaJugadorSeleccionada.innerHTML = opcionRatigueya.id;
         rotuloJugador = opcionRatigueya.id;
     }
-
     extraerAtaques(rotuloJugador);
     mascotaEnemigo();
     principal.style.display = 'none'
@@ -166,7 +176,7 @@ function seleccionarMascotaJugador() {
     divTres.style.display = 'flex';
 }
 
-function extraerAtaques(rotuloJugador){
+function extraerAtaques(rotuloJugador) {
     let ataques;
     for (let i = 0; i < mokepones.length; i++) {
         if (rotuloJugador === mokepones[i].nombre) {
@@ -176,18 +186,18 @@ function extraerAtaques(rotuloJugador){
     mostrarAtaques(ataques);
 }
 
-function mostrarAtaques(ataques){
+function mostrarAtaques(ataques) {
     let acumulador = 0;
     ataques.forEach((ataque) => {
-            acumulador ++;
-            ataquesMokepon = `
+        acumulador++;
+        ataquesMokepon = `
+        <div>
             <button class="ataques-jugador btnsAtaques" id=${ataque.id + acumulador} onclick="lanzarAtaques('${ataque.nombre}')">${ataque.nombre}</button>
-            `
-       
+        </div>    
+        `
         botonesAtaques.innerHTML += ataquesMokepon;
-        arrayBotonesAtaques = document.querySelectorAll('.btnsAtaques');
+        //array = document.querySelectorAll('.btnsAtaques');
     })
-    console.log(arrayBotonesAtaques);
 }
 
 // function secuenciaAtaque(){
@@ -232,15 +242,15 @@ function lanzarAtaques(a) {
     if (a == ataqueAleatorioEnemigo) {
         veredictoJugador.innerHTML = "EMPATE";
         veredicto.push("EMPATE");
-    } else if ((ataqueAleatorioEnemigo == agua && a == fuego) || 
-    (ataqueAleatorioEnemigo == fuego && a == tierra) ||
-    (ataqueAleatorioEnemigo == tierra && a == agua)) {
+    } else if ((ataqueAleatorioEnemigo == agua && a == fuego) ||
+        (ataqueAleatorioEnemigo == fuego && a == tierra) ||
+        (ataqueAleatorioEnemigo == tierra && a == agua)) {
         veredictoJugador.innerHTML = "PERDISTE";
         veredicto.push("PERDISTE");
         vidasJugador--;
     } else if ((a == agua && ataqueAleatorioEnemigo == fuego) ||
-    (a == fuego && ataqueAleatorioEnemigo == tierra) ||
-    (a == tierra && ataqueAleatorioEnemigo == agua)) {
+        (a == fuego && ataqueAleatorioEnemigo == tierra) ||
+        (a == tierra && ataqueAleatorioEnemigo == agua)) {
         veredictoJugador.innerHTML = "GANASTE";
         veredicto.push("GANASTE");
         vidasRival--;
