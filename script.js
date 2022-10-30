@@ -177,24 +177,17 @@ function extraerAtaques(rotuloJugador){
 }
 
 function mostrarAtaques(ataques){
+    let acumulador = 0;
     ataques.forEach((ataque) => {
-        if (ataque.nombre == agua) {
+            acumulador ++;
             ataquesMokepon = `
-            <button class="ataques-jugador btnsAtaques" id=${ataque.id} onclick="roundConAgua()">${ataque.nombre}</button>
+            <button class="ataques-jugador btnsAtaques" id=${ataque.id + acumulador} onclick="lanzarAtaques('${ataque.nombre}')">${ataque.nombre}</button>
             `
-        } else if (ataque.nombre == fuego){
-            ataquesMokepon = `
-            <button class="ataques-jugador btnsAtaques" id=${ataque.id} onclick="roundConFuego()">${ataque.nombre}</button>
-            `
-        } else {
-            ataquesMokepon = `
-            <button class="ataques-jugador btnsAtaques" id=${ataque.id} onclick="roundConTierra()">${ataque.nombre}</button>
-            `
-        }
+       
         botonesAtaques.innerHTML += ataquesMokepon;
         arrayBotonesAtaques = document.querySelectorAll('.btnsAtaques');
-        console.log(arrayBotonesAtaques);
     })
+    console.log(arrayBotonesAtaques);
 }
 
 // function secuenciaAtaque(){
@@ -230,74 +223,29 @@ function aleatorio(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-function roundConAgua() {
+function lanzarAtaques(a) {
     divCinco.style.display = 'flex';
-    columnaAtaquesJugador.innerHTML = agua;
+    columnaAtaquesJugador.innerHTML = a;
 
     let ataqueAleatorioEnemigo = ataquesAleatoriosEnemigo();
 
-    if (agua == ataqueAleatorioEnemigo) {
+    if (a == ataqueAleatorioEnemigo) {
         veredictoJugador.innerHTML = "EMPATE";
         veredicto.push("EMPATE");
-    } else if (ataqueAleatorioEnemigo == tierra) {
-        veredictoJugador.innerHTML = "PERDISTE";
-        veredicto.push("PERDISTE");
-        vidasJugador--
-    } else {
-        veredictoJugador.innerHTML = "GANASTE";
-        veredicto.push("GANASTE");
-        vidasRival--
-
-    }
-    spanVidasMascotaJugador.innerHTML = `<strong>${vidasJugador}</strong>`;
-    spanVidasMascotaRival.innerHTML = `<strong>${vidasRival}</strong>`;
-
-    resumenJugador.push(agua);
-    banderazo();
-}
-
-function roundConFuego() {
-    divCinco.style.display = 'flex';
-    columnaAtaquesJugador.innerHTML = fuego;
-
-    let ataqueAleatorioEnemigo = ataquesAleatoriosEnemigo();
-
-    if (fuego == ataqueAleatorioEnemigo) {
-        veredictoJugador.innerHTML = "EMPATE";
-        veredicto.push("EMPATE");
-    } else if (ataqueAleatorioEnemigo == agua) {
+    } else if ((ataqueAleatorioEnemigo == agua && a == fuego) || 
+    (ataqueAleatorioEnemigo == fuego && a == tierra) ||
+    (ataqueAleatorioEnemigo == tierra && a == agua)) {
         veredictoJugador.innerHTML = "PERDISTE";
         veredicto.push("PERDISTE");
         vidasJugador--;
-    } else {
+    } else if ((a == agua && ataqueAleatorioEnemigo == fuego) ||
+    (a == fuego && ataqueAleatorioEnemigo == tierra) ||
+    (a == tierra && ataqueAleatorioEnemigo == agua)) {
         veredictoJugador.innerHTML = "GANASTE";
         veredicto.push("GANASTE");
         vidasRival--;
     }
-    resumenJugador.push(fuego);
-    banderazo();
-    spanVidasMascotaJugador.innerHTML = `<strong>${vidasJugador}</strong>`;
-    spanVidasMascotaRival.innerHTML = `<strong>${vidasRival}</strong>`;
-}
-function roundConTierra() {
-    divCinco.style.display = 'flex';
-    columnaAtaquesJugador.innerHTML = tierra;
-
-    let ataqueAleatorioEnemigo = ataquesAleatoriosEnemigo();
-
-    if (tierra == ataqueAleatorioEnemigo) {
-        veredictoJugador.innerHTML = "EMPATE";
-        veredicto.push("EMPATE");
-    } else if (ataqueAleatorioEnemigo == fuego) {
-        veredictoJugador.innerHTML = "PERDISTE";
-        veredicto.push("PERDISTE");
-        vidasJugador--;
-    } else {
-        veredictoJugador.innerHTML = "GANASTE";
-        veredicto.push("GANASTE");
-        vidasRival--;
-    }
-    resumenJugador.push(tierra);
+    resumenJugador.push(a);
     banderazo();
     spanVidasMascotaJugador.innerHTML = `<strong>${vidasJugador}</strong>`;
     spanVidasMascotaRival.innerHTML = `<strong>${vidasRival}</strong>`;
